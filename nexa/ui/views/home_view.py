@@ -54,7 +54,7 @@ class HomeView(QWidget):
         self.btnLaunch = PushButton(FIF.SEARCH, "Launch")
         self.btnClipboard = PushButton(FIF.COPY, "Clipboard")
         self.btnFiles = PushButton(FIF.DOCUMENT, "Files")
-        self.btnFocus = PushButton(FIF.ALARM, "Focus")
+        self.btnFocus = PushButton(FIF.STOP_WATCH, "Focus")
         
         self.actionsLayout.addWidget(self.btnLaunch)
         self.actionsLayout.addWidget(self.btnClipboard)

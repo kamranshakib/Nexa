@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QVBoxLayout
 from qfluentwidgets import (SubtitleLabel, SwitchSettingCard, ComboBoxSettingCard,
-                            FluentIcon as FIF, ExpandLayout, SettingCardGroup)
+                            FluentIcon as FIF, ExpandLayout, SettingCardGroup, qconfig)
 
 class SettingsView(QWidget):
     def __init__(self, parent=None):
@@ -20,7 +20,7 @@ class SettingsView(QWidget):
         self.generalGroup = SettingCardGroup("General", self)
         
         self.themeCard = ComboBoxSettingCard(
-            None,
+            qconfig.themeMode,
             FIF.BRUSH,
             "Application Theme",
             "Change the appearance of NEXA",

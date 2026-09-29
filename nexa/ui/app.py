@@ -65,7 +65,7 @@ class NexaApp(FluentWindow):
         self.addSubInterface(self.clipboardInterface, FIF.COPY, 'Clipboard')
         self.addSubInterface(self.filesInterface, FIF.DOCUMENT, 'Files')
         self.addSubInterface(self.activityInterface, FIF.HISTORY, 'Activity')
-        self.addSubInterface(self.focusInterface, FIF.ALARM, 'Focus')
+        self.addSubInterface(self.focusInterface, FIF.STOP_WATCH, 'Focus')
         self.addSubInterface(self.systemInterface, FIF.APPLICATION, 'System')
         
         # Add settings to the bottom
