@@ -1,31 +1,58 @@
-# NEXA
+<div align="center">
+  <img src="nexa/ui/assets/icon.png" alt="NEXA Logo" width="120">
+  <h1>🚀 NEXA Productivity Hub</h1>
+  <p><i>The ultimate all-in-one productivity suite for Windows, built with PyQt6 & Fluent Design.</i></p>
 
-*"Your computer remembers. You just continue."*
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/PyQt6-Fluent_Design-0078D4?style=for-the-badge&logo=qt&logoColor=white">
+</div>
 
-NEXA is a modern, fast, lightweight, elegant personal desktop productivity environment for Windows. Built with Python and PyQt6 using Fluent Design (WinUI 3 equivalent).
+---
 
-## Current Development Phase: PHASE 1 (Core & Foundation)
-- [x] Project Structure (Python Clean Architecture)
-- [x] Main Entry Point (`nexa/main.py`)
-- [x] UI Shell with Fluent Widgets (`nexa/ui/app.py`)
-- [x] Home Dashboard View
-- [x] Global Launcher View
-- [x] Workspaces View
-- [x] Settings View
-- [x] Database Configuration (SQLite + SQLAlchemy)
+## ✨ Features
 
-## Setup Instructions
-1. Install Python 3.10+
-2. Create and activate a virtual environment:
+Nexa is designed to centralize your workflow and boost your productivity through a beautiful, modern Windows 11 style interface.
+
+- 🗂️ **Workspaces:** Group your URLs, folders, and applications into distinct workspaces and launch them all with a single click.
+- ⏳ **Focus Mode:** Stay in the zone with a built-in Pomodoro timer.
+- ⏱️ **Time Tracker (Clockify Style):** Track exactly how much time you spend on specific tasks and projects.
+- 📋 **Clipboard Manager:** Never lose copied text again. Automatically saves your clipboard history securely in a local database.
+- 🕰️ **Actionable Time Machine (Activity):** A chronological timeline of your recently launched workspaces and copied texts, with quick 'Copy Again' and 'Launch Again' buttons.
+- 🖥️ **System Dashboard:** Monitor CPU, RAM, and Storage usage with real-time glowing progress rings.
+- ⚙️ **Smart Settings:** Run at startup, toggle local tracking, and clear history with a click. Supports dynamic Dark and Light themes.
+
+## 📸 Screenshots
+
+> **Note:** Add your screenshots inside the `nexa/ui/assets/` folder and link them here to showcase the app!
+
+|<img src="https://via.placeholder.com/600x350.png?text=System+Dashboard+Screenshot" width="400">|<img src="https://via.placeholder.com/600x350.png?text=Focus+Mode+Screenshot" width="400">|
+|:---:|:---:|
+| **System Dashboard** | **Focus Mode & Tracker** |
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kamranshakib/Nexa.git
+   cd Nexa
+   ```
+
+2. **Set up a virtual environment (Recommended):**
    ```bash
    python -m venv venv
    .\venv\Scripts\activate
    ```
-3. Install dependencies:
+
+3. **Install Dependencies:**
    ```bash
-   .\venv\Scripts\python.exe -m pip install PyQt6 PyQt6-Fluent-Widgets SQLAlchemy loguru
+   pip install -r requirements.txt
    ```
-4. Run the application:
+   *(If `requirements.txt` is missing, manually install: `pip install PyQt6 PyQt6-Fluent-Widgets SQLAlchemy psutil win32-setctime pywin32`)*
+
+4. **Run the application:**
    ```bash
-   .\venv\Scripts\python.exe nexa\main.py
+   python nexa/main.py
    ```
+
+## 🔒 Privacy First
+Nexa stores **everything** locally in an SQLite database on your machine (`nexa_data.db`). Your clipboard history, activities, and workspaces never leave your computer.
