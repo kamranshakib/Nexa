@@ -19,6 +19,8 @@ class HomeWidget(QWidget):
 from nexa.ui.views.home_view import HomeView
 from nexa.ui.views.launcher_view import LauncherView
 from nexa.ui.views.workspaces_view import WorkspacesView
+from nexa.ui.views.clipboard_view import ClipboardView
+from nexa.ui.views.files_view import FilesView
 from nexa.ui.views.settings_view import SettingsView
 
 class NexaApp(FluentWindow):
@@ -38,10 +40,10 @@ class NexaApp(FluentWindow):
         self.workspacesInterface = WorkspacesView(self)
         self.workspacesInterface.setObjectName('workspacesInterface')
 
-        self.clipboardInterface = HomeWidget('Clipboard', self)
+        self.clipboardInterface = ClipboardView(self)
         self.clipboardInterface.setObjectName('clipboardInterface')
 
-        self.filesInterface = HomeWidget('Files & Search', self)
+        self.filesInterface = FilesView(self)
         self.filesInterface.setObjectName('filesInterface')
 
         self.activityInterface = HomeWidget('Activity Timeline', self)
@@ -57,7 +59,34 @@ class NexaApp(FluentWindow):
         self.settingsInterface.setObjectName('settingsInterface')
         
         self.initNavigation()
+        self.init_clipboard_listener()
         
+    def init_clipboard_listener(self):
+        self.app_clipboard = QApplication.clipboard()
+        self.app_clipboard.dataChanged.connect(self.on_clipboard_changed)
+        self.last_clipboard_text = ""
+
+    def on_clipboard_changed(self):
+        mime_data = self.app_clipboard.mimeData()
+        if mime_data.hasText():
+            text = mime_data.text().strip()
+            if text and text != self.last_clipboard_text:
+                self.last_clipboard_text = text
+                from nexa.infra.database import get_session, ClipboardItem
+                try:
+                    session = get_session()
+                    latest = session.query(ClipboardItem).order_by(ClipboardItem.id.desc()).first()
+                    if not latest or latest.content != text:
+                        new_item = ClipboardItem(content_type='text', content=text)
+                        session.add(new_item)
+                        session.commit()
+                    session.close()
+                    
+                    if hasattr(self, 'clipboardInterface') and hasattr(self.clipboardInterface, 'refresh'):
+                        self.clipboardInterface.refresh()
+                except Exception as e:
+                    print("Clipboard save error:", e)
+
     def initNavigation(self):
         self.addSubInterface(self.homeInterface, FIF.HOME, 'Home')
         self.addSubInterface(self.launcherInterface, FIF.SEARCH, 'Launcher')

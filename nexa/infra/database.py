@@ -37,7 +37,16 @@ class ClipboardItem(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     is_pinned = Column(Boolean, default=False)
 
+SessionLocal = None
+
 def init_db(db_path="nexa.db"):
+    global SessionLocal
     engine = create_engine(f"sqlite:///{db_path}", echo=False)
     Base.metadata.create_all(engine)
-    return sessionmaker(bind=engine)
+    SessionLocal = sessionmaker(bind=engine)
+    return SessionLocal
+
+def get_session():
+    if SessionLocal:
+        return SessionLocal()
+    raise Exception("Database not initialized")

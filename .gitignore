@@ -4,3 +4,13 @@ __pycache__/
 .env
 .idea/
 .vscode/
+
+# Database
+*.db
+nexa_data.db
+
+# Scratch files
+scratch_*.py
+
+# Config and local data
+config/
