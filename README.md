@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="nexa/ui/assets/icon.png" alt="NEXA Logo" width="120">
+  <img src="nexa/ui/assets/nexa_icon.jpg" alt="NEXA Logo" width="150" style="border-radius: 20px;">
   <h1>🚀 NEXA Productivity Hub</h1>
   <p><i>The ultimate all-in-one productivity suite for Windows, built with PyQt6 & Fluent Design.</i></p>
 
@@ -23,11 +23,14 @@ Nexa is designed to centralize your workflow and boost your productivity through
 
 ## 📸 Screenshots
 
-> **Note:** Add your screenshots inside the `nexa/ui/assets/` folder and link them here to showcase the app!
-
-|<img src="https://via.placeholder.com/600x350.png?text=System+Dashboard+Screenshot" width="400">|<img src="https://via.placeholder.com/600x350.png?text=Focus+Mode+Screenshot" width="400">|
+|<img src="nexa/ui/assets/nexa_system_dashboard.jpg" width="400">|<img src="nexa/ui/assets/nexa_focus_mode.jpg" width="400">|
 |:---:|:---:|
 | **System Dashboard** | **Focus Mode & Tracker** |
+
+<div align="center">
+  <img src="nexa/ui/assets/nexa_activity_timeline.jpg" width="600">
+  <p><b>Actionable Activity Timeline</b></p>
+</div>
 
 ## 🚀 Installation & Setup
 

@@ -113,7 +113,7 @@ class NexaApp(FluentWindow):
         
     def initWindow(self):
         self.resize(1000, 700)
-        self.setWindowIcon(QIcon('nexa/ui/assets/icon.png'))
+        self.setWindowIcon(QIcon('nexa/ui/assets/nexa_icon.jpg'))
         self.setWindowTitle('NEXA')
         
         # Center the window
