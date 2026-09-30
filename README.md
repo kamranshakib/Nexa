@@ -15,7 +15,7 @@ Nexa is designed to centralize your workflow and boost your productivity through
 
 - 🗂️ **Workspaces:** Group your URLs, folders, and applications into distinct workspaces and launch them all with a single click.
 - ⏳ **Focus Mode:** Stay in the zone with a built-in Pomodoro timer.
-- ⏱️ **Time Tracker (Clockify Style):** Track exactly how much time you spend on specific tasks and projects.
+- ⏱️ **Time Tracker:** Track exactly how much time you spend on specific tasks and projects.
 - 📋 **Clipboard Manager:** Never lose copied text again. Automatically saves your clipboard history securely in a local database.
 - 🕰️ **Actionable Time Machine (Activity):** A chronological timeline of your recently launched workspaces and copied texts, with quick 'Copy Again' and 'Launch Again' buttons.
 - 🖥️ **System Dashboard:** Monitor CPU, RAM, and Storage usage with real-time glowing progress rings.

@@ -336,7 +336,7 @@ class FocusView(QWidget):
         # Tabs / Segmented
         self.pivot = SegmentedWidget(self)
         self.pivot.addItem('pomodoro', 'Pomodoro Timer')
-        self.pivot.addItem('stopwatch', 'Time Tracker (Clockify style)')
+        self.pivot.addItem('stopwatch', 'Time Tracker')
         
         self.vBoxLayout.addWidget(self.pivot, alignment=Qt.AlignmentFlag.AlignCenter)
         self.vBoxLayout.addSpacing(20)
