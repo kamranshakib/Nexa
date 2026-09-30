@@ -123,9 +123,12 @@ class HomeView(QWidget):
         
     def launch_latest_workspace(self):
         if not self.latest_workspace_id: return
+        from nexa.infra.database import get_session, Workspace, log_activity
         session = get_session()
         ws = session.query(Workspace).filter_by(id=self.latest_workspace_id).first()
         if ws:
+            # Log the activity
+            log_activity('workspace', 'Workspace Launched', f"Launched '{ws.name}' workspace", str(ws.id))
             for item in ws.items:
                 try:
                     if item.item_type == 'url':

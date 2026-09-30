@@ -4,7 +4,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
 from qfluentwidgets import (FluentWindow, NavigationItemPosition, setTheme, Theme,
-                            SubtitleLabel, setFont, FluentIcon as FIF)
+                            SubtitleLabel, setFont, FluentIcon as FIF, qconfig)
 
 class HomeWidget(QWidget):
     def __init__(self, text: str, parent=None):
@@ -22,6 +22,9 @@ from nexa.ui.views.workspaces_view import WorkspacesView
 from nexa.ui.views.clipboard_view import ClipboardView
 from nexa.ui.views.files_view import FilesView
 from nexa.ui.views.settings_view import SettingsView
+from nexa.ui.views.activity_view import ActivityView
+from nexa.ui.views.focus_view import FocusView
+from nexa.ui.views.system_view import SystemView
 
 class NexaApp(FluentWindow):
     def __init__(self):
@@ -46,13 +49,13 @@ class NexaApp(FluentWindow):
         self.filesInterface = FilesView(self)
         self.filesInterface.setObjectName('filesInterface')
 
-        self.activityInterface = HomeWidget('Activity Timeline', self)
+        self.activityInterface = ActivityView(self)
         self.activityInterface.setObjectName('activityInterface')
 
-        self.focusInterface = HomeWidget('Focus Mode', self)
+        self.focusInterface = FocusView(self)
         self.focusInterface.setObjectName('focusInterface')
 
-        self.systemInterface = HomeWidget('System Dashboard', self)
+        self.systemInterface = SystemView(self)
         self.systemInterface.setObjectName('systemInterface')
         
         self.settingsInterface = SettingsView(self)
@@ -72,14 +75,22 @@ class NexaApp(FluentWindow):
             text = mime_data.text().strip()
             if text and text != self.last_clipboard_text:
                 self.last_clipboard_text = text
-                from nexa.infra.database import get_session, ClipboardItem
+                from nexa.infra.database import get_session, ClipboardItem, log_activity, get_setting
                 try:
+                    if get_setting('track_clipboard', 'True') != 'True':
+                        return
+                        
                     session = get_session()
                     latest = session.query(ClipboardItem).order_by(ClipboardItem.id.desc()).first()
                     if not latest or latest.content != text:
                         new_item = ClipboardItem(content_type='text', content=text)
                         session.add(new_item)
                         session.commit()
+                        
+                        # Log to activity timeline
+                        snippet = text[:50] + "..." if len(text) > 50 else text
+                        log_activity('clipboard', 'Copied text', snippet, text)
+                        
                     session.close()
                     
                     if hasattr(self, 'clipboardInterface') and hasattr(self.clipboardInterface, 'refresh'):
@@ -110,4 +121,6 @@ class NexaApp(FluentWindow):
         w, h = desktop.width(), desktop.height()
         self.move(w//2 - self.width()//2, h//2 - self.height()//2)
         
-        setTheme(Theme.LIGHT)
+        # Connect Theme Changes and Set Initial Theme
+        qconfig.themeChanged.connect(setTheme)
+        setTheme(qconfig.theme)

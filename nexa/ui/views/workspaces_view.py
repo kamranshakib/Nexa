@@ -132,9 +132,12 @@ class WorkspacesView(QWidget):
         self.load_workspaces()
 
     def on_launch_workspace(self, ws_id):
+        from nexa.infra.database import get_session, Workspace, log_activity
         session = get_session()
         ws = session.query(Workspace).filter_by(id=ws_id).first()
         if ws:
+            # Log the activity
+            log_activity('workspace', 'Workspace Launched', f"Launched '{ws.name}' workspace", str(ws.id))
             for item in ws.items:
                 try:
                     if item.item_type == 'url':
