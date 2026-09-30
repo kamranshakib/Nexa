@@ -21,7 +21,7 @@ Nexa is designed to centralize your workflow and boost your productivity through
 -  **System Dashboard:** Monitor CPU, RAM, and Storage usage with real-time glowing progress rings.
 -  **Smart Settings:** Run at startup, toggle local tracking, and clear history with a click. Supports dynamic Dark and Light themes.
 
-## 📸 Screenshots
+##  Screenshots
 
 <div align="center">
   <img src="nexa/ui/assets/nexa_collage.jpg" width="800" style="border-radius: 10px;">
