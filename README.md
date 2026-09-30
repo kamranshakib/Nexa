@@ -23,13 +23,8 @@ Nexa is designed to centralize your workflow and boost your productivity through
 
 ## 📸 Screenshots
 
-|<img src="nexa/ui/assets/nexa_system_dashboard.jpg" width="400">|<img src="nexa/ui/assets/nexa_focus_mode.jpg" width="400">|
-|:---:|:---:|
-| **System Dashboard** | **Focus Mode & Tracker** |
-
 <div align="center">
-  <img src="nexa/ui/assets/nexa_activity_timeline.jpg" width="600">
-  <p><b>Actionable Activity Timeline</b></p>
+  <img src="nexa/ui/assets/nexa_collage.jpg" width="800" style="border-radius: 10px;">
 </div>
 
 ## 🚀 Installation & Setup
