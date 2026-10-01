@@ -46,6 +46,14 @@ class Activity(Base):
     action_data = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
+class Note(Base):
+    __tablename__ = 'notes'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(200), nullable=False)
+    content = Column(Text, nullable=True)
+    is_completed = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
 SessionLocal = None
 
 def init_db(db_path="nexa.db"):

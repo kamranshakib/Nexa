@@ -25,6 +25,7 @@ from nexa.ui.views.settings_view import SettingsView
 from nexa.ui.views.activity_view import ActivityView
 from nexa.ui.views.focus_view import FocusView
 from nexa.ui.views.system_view import SystemView
+from nexa.ui.views.notes_view import NotesView
 
 class NexaApp(FluentWindow):
     def __init__(self):
@@ -57,6 +58,9 @@ class NexaApp(FluentWindow):
 
         self.systemInterface = SystemView(self)
         self.systemInterface.setObjectName('systemInterface')
+        
+        self.notesInterface = NotesView(self)
+        self.notesInterface.setObjectName('notesInterface')
         
         self.settingsInterface = SettingsView(self)
         self.settingsInterface.setObjectName('settingsInterface')
@@ -106,6 +110,7 @@ class NexaApp(FluentWindow):
         self.addSubInterface(self.filesInterface, FIF.DOCUMENT, 'Files')
         self.addSubInterface(self.activityInterface, FIF.HISTORY, 'Activity')
         self.addSubInterface(self.focusInterface, FIF.STOP_WATCH, 'Focus')
+        self.addSubInterface(self.notesInterface, FIF.EDIT, 'Notes')
         self.addSubInterface(self.systemInterface, FIF.APPLICATION, 'System')
         
         # Add settings to the bottom

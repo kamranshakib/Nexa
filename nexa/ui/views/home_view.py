@@ -30,8 +30,9 @@ class HomeView(QWidget):
         
         # Search
         self.searchBox = SearchLineEdit()
-        self.searchBox.setPlaceholderText("Search anything... (Alt + Space)")
+        self.searchBox.setPlaceholderText("Search web... (Enter to search)")
         self.searchBox.setFixedWidth(500)
+        self.searchBox.returnPressed.connect(self.do_web_search)
         self.vBoxLayout.addWidget(self.searchBox, alignment=Qt.AlignmentFlag.AlignLeft)
         
         self.vBoxLayout.addSpacing(40)
@@ -174,3 +175,11 @@ class HomeView(QWidget):
     def switch_to_settings(self):
         if hasattr(self.window(), 'switchTo') and hasattr(self.window(), 'settingsInterface'):
             self.window().switchTo(self.window().settingsInterface)
+            
+    def do_web_search(self):
+        query = self.searchBox.text().strip()
+        if query:
+            import urllib.parse
+            url = f"https://www.google.com/search?q={urllib.parse.quote(query)}"
+            webbrowser.open(url)
+            self.searchBox.clear()
